@@ -55,8 +55,8 @@ const toCssString = ({styleId, backgroundColor, color, width, height}) =>
             background: ${backgroundColor}; 
             color: ${color};
             font-size: 20px;
-            width: ${width}; 
-            height: ${height};
+            width: ${width}px; 
+            height: ${height}px;
         } `;
 
 export default {
