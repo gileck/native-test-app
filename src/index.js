@@ -1,11 +1,11 @@
 import 'regenerator-runtime/runtime';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app';
+import App from './App/app';
 import {ViewerScriptWrapper} from 'native-components-infra';
 import viewerScript from './viewerScript'
 
-const WrapperComponent = ViewerScriptWrapper(App, {
+const WrapperComponent = ViewerScriptWrapper(App.component, {
     viewerScript: viewerScript,
     widgetConfig: {
         dataKeys: [{key: 'Teams', scope: 'COMPONENT'}],

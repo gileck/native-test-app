@@ -46,7 +46,7 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
-    "native-components-infra": "1.0.60",
+    "native-components-infra": "1.0.100",
     "node-sass": "^3.4.2",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
@@ -57,7 +57,12 @@
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.4.1",
     "resolve": "1.6.0",
+    "santa-components": "^1.502.0",
     "sass-loader": "^3.2.0",
+    "stylable": "^5.4.10",
+    "stylable-integration": "latest",
+    "stylable-santa": "1.0.15",
+    "stylable-webpack-plugin": "^1.1.6",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
@@ -77,12 +82,11 @@
     },
     "hmr": false,
     "entry": {
-      "app": "app.js",
-      "index": "index.js",
+      "app": "App/app.js",
       "viewerScript": "viewerScript.js",
-      "Settings": "settings/App.js"
+      "Settings": "settings/App.js",
+      "controller": "controller.js"
     },
-    "separateCss": false,
     "features": {
       "externalizeRelativeLodash": true
     },
@@ -121,6 +125,13 @@
         "commonjs": "UI",
         "commonjs2": "UI",
         "root": "UI"
+      },
+      "imageClientSDK": {
+        "amd": "imageClientSDK",
+        "umd": "imageClientSDK",
+        "commonjs": "imageClientSDK",
+        "commonjs2": "imageClientSDK",
+        "root": "imageClientSDK"
       }
     },
     "exports": {},
