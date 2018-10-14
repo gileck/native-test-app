@@ -1,68 +1,75 @@
-/*** wix-sdk.js*/
-export let WixSDK = null;
-export function setSDK(sdk) {
-    WixSDK = sdk;
-}
-
-/*** file.js */
-
+const theStore;
 const WEATHER_WIDGET_ID = "6fa1ef51-0aaf-40bb-9d46-d2b4b5ea7e99";
 const citiesWeather = {
     'Tel Aviv': 30,
     'London': 20,
     'Paris': 10
 };
-const getWeather = function (city) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(citiesWeather[city]);
-        }, 1000)
-    })
-};
 
-/**
- *
- * @param $w (String) => Element
- * @param wixSDK - {window, user, stores, site, pay, location, crm}
- * @returns {Promise<WarmupData>}
- */
-async function pageReady($w, wixSDK) {
-    const city = 'Tel Aviv';
-    const weather = await getWeather(city);
-    $w.props({
-        city,
-        weather,
-        onCityChanged: newCity => {
-            getWeather(newCity)
-                .then(newWeather => $w.props({
-                    city: newCity,
-                    weather: newWeather
-                }))
-        }
-    });
+class SantaController() {
+    constructor({$w}) {
+        this.$w = $w;
+    }
 
-    // return {city, weather}
+    setProps(props) {
+        $w.props(props);
+    }
+
+    setWarmupData(data) {
+        this.warmupData = data;
+    }
+
+    async pageReady() {
+        await this.init();
+        return this.warmupData;
+    }
 }
 
-/**
- * pageReady: ($w, wixSDK) => Promise<warmupData>
- * exprots: (RMI, $w) => Object - The controller's public API.
- */
-const weatherController = () => {
-    return {
-        pageReady,
-        exports: function (RMI, $w) {
-            return {
-                setWeather() {
-
-                }
-            }
-        }
+class WeatherController extends SantaController {
+    constructor(config) {
+        super(config);
     }
-};
 
-const controllerByType = {
-    [WEATHER_WIDGET_ID]: weatherController
+    getWeather(city) {
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(citiesWeather[city]), 1000)
+        });
+    }
+
+    setWeather(weather) {
+
+    }
+
+    async onCityChanged(newCity) {
+        const weather = await this.getProducts(newCity)
+        this.setProps({
+            city: newCity,
+            weather: newWeather
+        }))
+    }
+
+    async getInitialProps() {
+        const city = 'Tel Aviv';
+        const weather = await this.getWeather(city);
+        return {city, weather};
+    }
+
+    async init() {
+        this.setProps({
+            onCityChanged: this.onCityChanged
+        });
+    }
+
+    exports() {
+        return {
+            setWeather: this.setWeather
+        };
+    }
+
+}
+
+export const controllerByType = {
+    [WEATHER_WIDGET_ID]: WeatherController
 };
 
 
@@ -71,10 +78,21 @@ const controllerByType = {
  * @returns Controller[] | Promise<Controller>[]
  */
 function createControllers(controllerConfigs) {
-    return controllerConfigs.map(config => controllerByType[config.type](config));
+    return controllerConfigs.map(config => new controllerByType[config.type](config));
 }
 
+async function initAppForPage(
+    store,
+    params,
+    api,
+  ) {
+    if (!store) {
+        store = await createStore();
+    }
+    return store;
+}
 
 module.exports = {
+    initAppForPage,
     createControllers
 };
