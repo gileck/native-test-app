@@ -170,3 +170,4 @@ TPAWidgetNative.propTypes = {
     createNativeAppComponent: _santaComponentsInfraProd.santaTypeDefinitions.NativeComponentSantaTypes.createNativeAppComponent,
     getStyleData: _santaComponentsInfraProd.santaTypeDefinitions.Component.getStyleData
 };
+//# sourceMappingURL=TPAWidgetNative.js.map

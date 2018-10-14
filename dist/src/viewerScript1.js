@@ -1,119 +1,4 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else {
-		var a = factory();
-		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
-	}
-})(typeof self !== 'undefined' ? self : this, function() {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	__webpack_require__.p = typeof window !== 'undefined' && window.__STATICS_BASE_URL__ || __webpack_require__.p;
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */
-/*!*************************!*\
-  !*** ./initialState.js ***!
-  \*************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var getThings = exports.getThings = function getThings(a, b, c) {
-    return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-            var things = [1, 2, 3, 4, 5];
-            resolve(things);
-        }, 1000);
-    });
-};
-
-/***/ }),
-/* 2 */,
-/* 3 */,
-/* 4 */
-/*!*************************!*\
-  !*** ./viewerScript.js ***!
-  \*************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -130,29 +15,22 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // import {getThings} from './initialState';
 
 module.exports = function () {
-    var pageReady = function () {
-        var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee($w) {
-            var things;
+    var onCityChanged = function () {
+        var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(newCity) {
+            var newWeather;
             return regeneratorRuntime.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
                             _context.next = 2;
-                            return getThings();
+                            return getWeather(newCity);
 
                         case 2:
-                            things = _context.sent;
+                            newWeather = _context.sent;
 
                             $w.props({
-                                things: things,
-
-                                onSubmit: function onSubmit(a, b, newThings) {
-                                    $w.props({
-                                        things: newThings,
-                                        a: a,
-                                        b: b
-                                    });
-                                }
+                                city: newCity,
+                                weather: newWeather
                             });
 
                         case 4:
@@ -163,12 +41,45 @@ module.exports = function () {
             }, _callee, this);
         }));
 
-        return function pageReady(_x) {
+        return function onCityChanged(_x) {
             return _ref4.apply(this, arguments);
         };
     }();
 
-    var _require = __webpack_require__(/*! ./initialState */ 1),
+    var pageReady = function () {
+        var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2($w) {
+            var city, weather;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            city = 'Tel Aviv';
+                            _context2.next = 3;
+                            return getWeather(city);
+
+                        case 3:
+                            weather = _context2.sent;
+
+                            $w.props({
+                                city: city,
+                                weather: weather,
+                                onCityChanged: onCityChanged
+                            });
+
+                        case 5:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, this);
+        }));
+
+        return function pageReady(_x2) {
+            return _ref5.apply(this, arguments);
+        };
+    }();
+
+    var _require = require('./initialState'),
         getThings = _require.getThings;
 
     var pubsub = void 0,
@@ -246,12 +157,21 @@ module.exports = function () {
         }(Element);
     };
 
+    var getWeather = function getWeather(city) {
+        return new Promise(function (resolve) {
+            setTimeout(function () {
+                if (city === 'Tel Aviv') {
+                    resolve(30);
+                } else if (city === 'London') {
+                    resolve(20);
+                } else resolve(0);
+            }, 1000);
+        });
+    };
+
     function controller() {
         return {
             pageReady: pageReady,
-            // apiClass: createApiClass
-
-
             exports: function exports(RMI, $w) {
                 return {
                     setThings: function setThings(things) {
@@ -261,15 +181,6 @@ module.exports = function () {
                     }
                 };
             }
-            //     return {
-            //         openChat: function (things) {
-            //             if (nativeCompIsIframe()) {
-            //                 pubsub.publish('add_to_cart_wix_code', {things}, true);
-            //             }
-            //             $w('@this').props = {newThings: things};
-            //         }
-            //     }
-            // }
         };
     }
 
@@ -280,8 +191,8 @@ module.exports = function () {
     };
 
     function createControllers(controllerConfigs) {
-        return controllerConfigs.map(function (_ref5) {
-            var type = _ref5.type;
+        return controllerConfigs.map(function (_ref6) {
+            var type = _ref6.type;
 
             return Promise.resolve(controllerByType[type] ? controllerByType[type]() : emptyController());
         });
@@ -303,8 +214,4 @@ module.exports = function () {
         // }
     };
 }();
-
-/***/ })
-/******/ ]);
-});
-//# sourceMappingURL=viewerScript.bundle.js.map
+//# sourceMappingURL=viewerScript1.js.map

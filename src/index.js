@@ -13,4 +13,5 @@ const WrapperComponent = ViewerScriptWrapper(App.component, {
     },
     Wix: window.Wix
 });
+
 ReactDOM.render(<WrapperComponent /> ,document.getElementById('root'));

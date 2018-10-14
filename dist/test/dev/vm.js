@@ -28,3 +28,4 @@ function renderVM(template, data) {
 
   return engine.render(Object.assign({}, velocityData, velocityDataPrivate, data));
 }
+//# sourceMappingURL=vm.js.map

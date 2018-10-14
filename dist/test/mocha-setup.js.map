@@ -1,0 +1,1 @@
+{"version":3,"sources":["mocha-setup.js"],"names":["axios","baseURL"],"mappings":";;AAAA;;;;AACA;;AACA;;;;AAEA,oCAAeA,eAAf,EAAsB,EAAEC,4BAAF,EAAtB","file":"mocha-setup.js","sourcesContent":["import axios from 'axios';\nimport { wixAxiosConfig } from 'wix-axios-config';\nimport { baseURL } from './test-common';\n\nwixAxiosConfig(axios, { baseURL });\n"]}

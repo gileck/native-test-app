@@ -21,6 +21,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // import 'regenerator-runtime/runtime';
 // import santaTypesDefinitions from 'santa-components/src/definitions/santaTypesDefinitions';
 
+var toCssString = function toCssString(_ref) {
+    var styleId = _ref.styleId,
+        backgroundColor = _ref.backgroundColor,
+        color = _ref.color,
+        width = _ref.width,
+        height = _ref.height;
+
+    return '.root {\n            background: ' + backgroundColor + '; \n            color: ' + color + ';\n            font-size: 20px;\n            width: 100%; \n            height: 100%;\n            padding: 10px;\n        } ';
+};
+
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
 
@@ -31,25 +41,9 @@ var App = function (_React$Component) {
     }
 
     _createClass(App, [{
-        key: 'buildStyle',
-        value: function buildStyle(props) {
-            return toCssString({
-                styleId: null,
-                backgroundColor: 'lightblue',
-                color: 'black',
-                width: "200px",
-                height: "300px"
-            });
-        }
-    }, {
-        key: 'handleChange',
-        value: function handleChange(e) {
-            this.setState({ value: event.target.value });
-        }
-    }, {
         key: 'handleClick',
-        value: function handleClick() {
-            this.props.onSubmit(1, 2, this.state.value.split(" "));
+        value: function handleClick(city) {
+            this.props.onCityChanged(city);
         }
     }, {
         key: 'render',
@@ -57,44 +51,70 @@ var App = function (_React$Component) {
             var _this2 = this;
 
             var _props = this.props,
-                newThings = _props.newThings,
-                things = _props.things;
+                weather = _props.weather,
+                city = _props.city;
+
 
             return _react2.default.createElement(
                 'div',
                 { className: 'root' },
-                _react2.default.createElement('input', { type: 'text', placeholder: 'Enter new things', onChange: function onChange(e) {
-                        return _this2.handleChange(e);
-                    } }),
-                _react2.default.createElement(
-                    'button',
-                    { style: { color: 'gray' }, onClick: function onClick() {
-                            return _this2.handleClick();
-                        } },
-                    'UPDATE'
-                ),
                 _react2.default.createElement(
                     'div',
                     null,
-                    'Things from VS: ',
-                    things,
+                    'City: ',
+                    city,
                     ' '
                 ),
                 _react2.default.createElement(
                     'div',
                     null,
-                    'Things from Wix Code: ',
-                    newThings,
+                    'Weather: ',
+                    weather,
                     ' '
-                )
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#', style: { color: 'white' }, onClick: function onClick() {
+                                return _this2.handleClick('Tel Aviv');
+                            } },
+                        'Tel Aviv'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#', style: { color: 'white' }, onClick: function onClick() {
+                                return _this2.handleClick('London');
+                            } },
+                        'London'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#', style: { color: 'white' }, onClick: function onClick() {
+                                return _this2.handleClick('Paris');
+                            } },
+                        'Paris'
+                    )
+                ),
+                _react2.default.createElement('style', null)
             );
         }
     }], [{
         key: 'css',
-        value: function css(_ref) {
-            var styleId = _ref.styleId,
-                styleData = _ref.styleData,
-                layout = _ref.layout;
+        value: function css(_ref2) {
+            var styleId = _ref2.styleId,
+                styleData = _ref2.styleData,
+                layout = _ref2.layout;
             var width = layout.width,
                 height = layout.height;
 
@@ -108,79 +128,7 @@ var App = function (_React$Component) {
     return App;
 }(_react2.default.Component);
 
-App.displayName = "App";
-
-
-var toCssString = function toCssString(_ref2) {
-    var styleId = _ref2.styleId,
-        backgroundColor = _ref2.backgroundColor,
-        color = _ref2.color,
-        width = _ref2.width,
-        height = _ref2.height;
-    return '.root {\n            background: ' + backgroundColor + '; \n            color: ' + color + ';\n            font-size: 20px;\n            width: ' + width + '; \n            height: ' + height + ';\n        } ';
-};
-
 exports.default = {
     component: App
-
-    // export const NativePropsBuilder = (WrappedComponent) => {
-    //     return class extends React.Component {
-    //         constructor(props) {
-    //             super(props);
-    //             this.props.appLoadBI && this.props.appLoadBI.startLoading();
-    //         }
-    //
-    //         static propTypes = {
-    //             style: santaTypesDefinitions.NativeComponentSantaTypes.widgetStyle,
-    //             resizeComponent: santaTypesDefinitions.NativeComponentSantaTypes.resizeComponent,
-    //             dimensions: santaTypesDefinitions.Component.style,
-    //             compActions: santaTypesDefinitions.Component.compActions,
-    //             compData: santaTypesDefinitions.Component.compData,
-    //             handleAction: santaTypesDefinitions.Behaviors.handleAction,
-    //             formFactor: santaTypesDefinitions.NativeComponentSantaTypes.deviceType,
-    //             viewMode: santaTypesDefinitions.NativeComponentSantaTypes.viewMode,
-    //             defaultContentArea: santaTypesDefinitions.Container.defaultContentArea,
-    //             appLoadBI: santaTypesDefinitions.NativeComponentSantaTypes.appLoadBI
-    //         };
-    //
-    //         componentDidMount() {
-    //             this.props.appLoadBI && this.props.appLoadBI.loaded();
-    //         }
-    //
-    //         getEventHandlers() {
-    //             return _.mapValues(this.props.compActions, eventInfo => (...argsArray) => this.props.handleAction(eventInfo, {payload: JSON.stringify(argsArray)}));
-    //         }
-    //
-    //         getMarginLeftStyle() {
-    //             const {width, alignment} = _.get(this.props, 'defaultContentArea', {width: 980, alignment: 0.5});
-    //             return {
-    //                 marginLeft: `calc((100% - ${width}px) * ${alignment})`
-    //             }
-    //         }
-    //
-    //         render() {
-    //             const eventHandlers = this.getEventHandlers();
-    //             console.log({eventHandlers});
-    //             const wixCodeProps = _.get(this.props, 'compData.wixCodeProps');
-    //             const {style, id, resizeComponent, formFactor, viewMode} = this.props;
-    //             const dimensions = _.pick(this.props.dimensions, ['width', 'height', 'left', 'top']);
-    //             const props = {
-    //                 ...wixCodeProps,
-    //                 ...eventHandlers,
-    //                 id,
-    //                 style,
-    //                 resizeComponent,
-    //                 formFactor,
-    //                 viewMode,
-    //                 dimensions
-    //             };
-    //
-    //             const wrapperStyle = _.defaults(this.getMarginLeftStyle(), this.props.dimensions);
-    //             return <div style={wrapperStyle}>
-    //                 <WrappedComponent {...props}/>
-    //             </div>
-    //         }
-    //     };
-    // };
-
 };
+//# sourceMappingURL=app.js.map

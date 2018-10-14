@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.js"],"names":["require","start"],"mappings":";;AAAAA,QAAQ,gBAAR;;eACkBA,QAAQ,mBAAR,C;IAAVC,K,YAAAA,K;;AAERA","file":"index.js","sourcesContent":["require('babel-register');\nconst { start } = require('./test/dev/server');\n\nstart();\n"]}

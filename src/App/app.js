@@ -2,45 +2,52 @@ import React from 'react';
 // import 'regenerator-runtime/runtime';
 // import santaTypesDefinitions from 'santa-components/src/definitions/santaTypesDefinitions';
 
+const toCssString = ({styleId, backgroundColor, color, width, height}) => {
+    return `.root {
+            background: ${backgroundColor}; 
+            color: ${color};
+            font-size: 20px;
+            width: 100%; 
+            height: 100%;
+            padding: 10px;
+        } `;
+};
+
+
 class App extends React.Component {
 
-    buildStyle(props) {
-        return toCssString({
-            styleId: null,
-            backgroundColor: 'lightblue',
-            color: 'black',
-            width: "200px",
-            height: "300px"
-        })
-    }
-
-    handleChange(e) {
-        this.setState({value: event.target.value});
-    }
-
-    handleClick() {
-        this.props.onSubmit(1, 2, this.state.value.split(" "));
+    handleClick(city) {
+        this.props.onCityChanged(city);
     }
 
 
     render() {
-        const {newThings, things} = this.props;
+        const {weather, city} = this.props;
+
         return (
             <div className='root'>
-                <input type="text" placeholder='Enter new things' onChange={(e) => this.handleChange(e)}/>
-                <button style={{color: 'gray'}} onClick={() => this.handleClick()}>UPDATE</button>
-                <div>Things from VS: {things} </div>
-                <div>Things from Wix Code: {newThings} </div>
-                {/*<style>*/}
-                {/*{this.buildStyle(this.props)}*/}
-                {/*</style>*/}
+
+                <div>City: {city} </div>
+                <div>Weather: {weather} </div>
+
+                <br/>
+
+                <div>
+                    <a href="#" style={{color: 'white'}} onClick={() => this.handleClick('Tel Aviv')}>Tel Aviv</a>
+                </div>
+                <div>
+                    <a href="#" style={{color: 'white'}} onClick={() => this.handleClick('London')}>London</a>
+                </div>
+                <div>
+                    <a href="#" style={{color: 'white'}} onClick={() => this.handleClick('Paris')}>Paris</a>
+                </div>
+                <style>
+
+                </style>
             </div>
 
         );
     }
-
-    static displayName = "App";
-
     static css({styleId, styleData, layout}) {
         const {width, height} = layout;
         const styleParams = styleData.styleParams;
@@ -50,79 +57,10 @@ class App extends React.Component {
     }
 }
 
-const toCssString = ({styleId, backgroundColor, color, width, height}) =>
-    `.root {
-            background: ${backgroundColor}; 
-            color: ${color};
-            font-size: 20px;
-            width: 100%; 
-            height: 100%;
-        } `;
+
 
 export default {
     component: App
 }
-
-
-// export const NativePropsBuilder = (WrappedComponent) => {
-//     return class extends React.Component {
-//         constructor(props) {
-//             super(props);
-//             this.props.appLoadBI && this.props.appLoadBI.startLoading();
-//         }
-//
-//         static propTypes = {
-//             style: santaTypesDefinitions.NativeComponentSantaTypes.widgetStyle,
-//             resizeComponent: santaTypesDefinitions.NativeComponentSantaTypes.resizeComponent,
-//             dimensions: santaTypesDefinitions.Component.style,
-//             compActions: santaTypesDefinitions.Component.compActions,
-//             compData: santaTypesDefinitions.Component.compData,
-//             handleAction: santaTypesDefinitions.Behaviors.handleAction,
-//             formFactor: santaTypesDefinitions.NativeComponentSantaTypes.deviceType,
-//             viewMode: santaTypesDefinitions.NativeComponentSantaTypes.viewMode,
-//             defaultContentArea: santaTypesDefinitions.Container.defaultContentArea,
-//             appLoadBI: santaTypesDefinitions.NativeComponentSantaTypes.appLoadBI
-//         };
-//
-//         componentDidMount() {
-//             this.props.appLoadBI && this.props.appLoadBI.loaded();
-//         }
-//
-//         getEventHandlers() {
-//             return _.mapValues(this.props.compActions, eventInfo => (...argsArray) => this.props.handleAction(eventInfo, {payload: JSON.stringify(argsArray)}));
-//         }
-//
-//         getMarginLeftStyle() {
-//             const {width, alignment} = _.get(this.props, 'defaultContentArea', {width: 980, alignment: 0.5});
-//             return {
-//                 marginLeft: `calc((100% - ${width}px) * ${alignment})`
-//             }
-//         }
-//
-//         render() {
-//             const eventHandlers = this.getEventHandlers();
-//             console.log({eventHandlers});
-//             const wixCodeProps = _.get(this.props, 'compData.wixCodeProps');
-//             const {style, id, resizeComponent, formFactor, viewMode} = this.props;
-//             const dimensions = _.pick(this.props.dimensions, ['width', 'height', 'left', 'top']);
-//             const props = {
-//                 ...wixCodeProps,
-//                 ...eventHandlers,
-//                 id,
-//                 style,
-//                 resizeComponent,
-//                 formFactor,
-//                 viewMode,
-//                 dimensions
-//             };
-//
-//             const wrapperStyle = _.defaults(this.getMarginLeftStyle(), this.props.dimensions);
-//             return <div style={wrapperStyle}>
-//                 <WrappedComponent {...props}/>
-//             </div>
-//         }
-//     };
-// };
-
 
 

@@ -13,3 +13,4 @@ require('./settings.scss');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _reactDom.render)(_react2.default.createElement(_settings.Settings, null), document.getElementById('root'));
+//# sourceMappingURL=App.js.map

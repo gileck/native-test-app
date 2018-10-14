@@ -85,3 +85,4 @@ module.exports = function () {
         controller: controller
     };
 }();
+//# sourceMappingURL=controller.js.map
