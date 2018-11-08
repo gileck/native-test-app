@@ -1,11 +1,3 @@
-/*** wix-sdk.js*/
-export let WixSDK = null;
-export function setSDK(sdk) {
-    WixSDK = sdk;
-}
-
-/*** file.js */
-
 const WEATHER_WIDGET_ID = "6fa1ef51-0aaf-40bb-9d46-d2b4b5ea7e99";
 const citiesWeather = {
     'Tel Aviv': 30,
