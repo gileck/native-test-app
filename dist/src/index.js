@@ -32,4 +32,3 @@ var WrapperComponent = (0, _nativeComponentsInfra.ViewerScriptWrapper)(_app2.def
 });
 
 _reactDom2.default.render(_react2.default.createElement(WrapperComponent, null), document.getElementById('root'));
-//# sourceMappingURL=index.js.map

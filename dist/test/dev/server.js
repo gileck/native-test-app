@@ -44,4 +44,3 @@ function start() {
     console.info('Fake server is running on port ' + port);
   });
 }
-//# sourceMappingURL=server.js.map

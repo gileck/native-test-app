@@ -1,1 +1,0 @@
-{"version":3,"sources":["test-common.js"],"names":["baseURL"],"mappings":";;;;;AAAO,IAAMA,mDAAN","file":"test-common.js","sourcesContent":["export const baseURL = `http://localhost:5554`;\n"]}

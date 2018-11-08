@@ -62,4 +62,3 @@ var Design = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Design;
-//# sourceMappingURL=design.js.map

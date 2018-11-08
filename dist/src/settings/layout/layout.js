@@ -155,4 +155,3 @@ var Layout = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Layout;
-//# sourceMappingURL=layout.js.map

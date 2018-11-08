@@ -11,4 +11,3 @@ var getThings = exports.getThings = function getThings(a, b, c) {
         }, 1000);
     });
 };
-//# sourceMappingURL=initialState.js.map

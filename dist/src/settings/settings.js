@@ -59,4 +59,3 @@ var Settings = exports.Settings = function (_React$Component) {
 
     return Settings;
 }(_react2.default.Component);
-//# sourceMappingURL=settings.js.map

@@ -82,4 +82,3 @@ var EditorWrapper = function EditorWrapper(InnerComponent) {
 };
 
 exports.default = EditorWrapper;
-//# sourceMappingURL=EditorWrapper.js.map

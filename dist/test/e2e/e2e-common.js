@@ -57,4 +57,3 @@ after(_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(
 })));
 
 var baseURL = exports.baseURL = 'http://localhost:3100';
-//# sourceMappingURL=e2e-common.js.map

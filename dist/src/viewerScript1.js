@@ -214,4 +214,3 @@ module.exports = function () {
         // }
     };
 }();
-//# sourceMappingURL=viewerScript1.js.map
