@@ -35,7 +35,7 @@ function start() {
 
     req.session.visitCount++;
 
-    res.send((0, _vm.renderVM)('./src/index.vm', {
+    res.send((0, _vm.renderVM)('./src/index.html', {
       visitCount: req.session.visitCount
     }));
   });

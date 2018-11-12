@@ -46,14 +46,21 @@ var App = function (_React$Component) {
             this.props.onCityChanged(city);
         }
     }, {
+        key: 'handleClickAction',
+        value: function handleClickAction(action) {
+            this.props.actions[action]();
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
 
             var _props = this.props,
                 weather = _props.weather,
-                city = _props.city;
+                city = _props.city,
+                actions = _props.actions;
 
+            console.log(this.props);
 
             return _react2.default.createElement(
                 'div',
@@ -61,7 +68,7 @@ var App = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     null,
-                    'City: ',
+                    'City1: ',
                     city,
                     ' '
                 ),
@@ -71,6 +78,12 @@ var App = function (_React$Component) {
                     'Weather: ',
                     weather,
                     ' '
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    'Action Data: ',
+                    actions.data
                 ),
                 _react2.default.createElement('br', null),
                 _react2.default.createElement(
@@ -106,6 +119,41 @@ var App = function (_React$Component) {
                         'Paris'
                     )
                 ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    ' --- TEST actions --- '
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#', style: { color: 'white' },
+                            onClick: function onClick() {
+                                return _this2.handleClickAction('actions1');
+                            } },
+                        'Action1'
+                    ),
+                    ' |',
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#', style: { color: 'white' },
+                            onClick: function onClick() {
+                                return _this2.handleClickAction('actions2');
+                            } },
+                        'Action2'
+                    ),
+                    ' |',
+                    _react2.default.createElement(
+                        'a',
+                        { href: '#', style: { color: 'white' },
+                            onClick: function onClick() {
+                                return _this2.handleClickAction('actions3');
+                            } },
+                        'Action3'
+                    )
+                ),
                 _react2.default.createElement('style', null)
             );
         }
@@ -119,8 +167,8 @@ var App = function (_React$Component) {
                 height = layout.height;
 
             var styleParams = styleData.styleParams;
-            var backgroundColor = _.get(styleParams, 'colors._backgroundColor.value');
-            var color = _.get(styleParams, 'colors._titleColor.value');
+            var backgroundColor = _.get(styleParams, 'colors._backgroundColor.value', 'lightblue');
+            var color = _.get(styleParams, 'colors._titleColor.value', 'black');
             return toCssString({ styleId: styleId, backgroundColor: backgroundColor, color: color, width: width, height: height });
         }
     }]);

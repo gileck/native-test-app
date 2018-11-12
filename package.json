@@ -77,7 +77,7 @@
       "cdn": {
         "port": 3200,
         "dir": "dist/statics",
-        "ssl": true
+        "ssl": false
       }
     },
     "hmr": false,

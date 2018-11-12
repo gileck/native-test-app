@@ -21,7 +21,7 @@ export function start(port = process.env.PORT || 3000) {
     req.session.visitCount++;
 
     res.send(
-      renderVM('./src/index.vm', {
+      renderVM('./src/index.html', {
         visitCount: req.session.visitCount,
       }),
     );
